@@ -10,7 +10,7 @@ window.onload = function () {
                 select.appendChild(option);
             });
         })
-        .catch(error => console.error('Error:', error));
+        .catch(error => console.error(error));
 
     fetch('/professores')
         .then(response => response.json())
@@ -19,11 +19,11 @@ window.onload = function () {
             professores.forEach(professor => {
                 const option = document.createElement('option');
                 option.value = professor.id_prof;
-                option.text = professor.nome_prof + " " + professor.sobrenome_prof;
+                option.text = professor.nome_prof + ' ' + professor.sobrenome_prof;
                 select.appendChild(option);
             });
         })
-        .catch(error => console.error('Error:', error));
+        .catch(error => console.error(error));
 };
 
 function criarTurma() {
@@ -44,13 +44,12 @@ function criarTurma() {
         },
         body: JSON.stringify(turma),
     })
-        .then(response => response.json())
-        .then(data => {
-            alert('Turma Criada');
-            console.log('Success:', data);
+        .then((response) => response.text())
+        .then((responseText) => {
+            alert('Turma Criada' + responseText);
             window.location.reload();
         })
         .catch((error) => {
-            console.error('Error:', error);
+            console.error(error);
         });
 }
